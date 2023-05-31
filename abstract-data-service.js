@@ -21,7 +21,7 @@ class DataService {
 	constructor({serviceName = 'dataService', useIndependentIds = true, eventName = 'object-change'} = {}) {
 		Object.assign(this, {
 			log: filog(serviceName + ':')
-			, collections: []
+			, collections: {}
 			, useIndependentIds: useIndependentIds
 			, eventName: eventName
 		}, arguments[0])
@@ -32,7 +32,7 @@ class DataService {
 	 * @returns a base64 string, 256 bits of randomness
 	 */
 	generateId() {
-		return crypto.randomBytes(32).toString("base64");
+		return crypto.randomBytes(32).toString("base64url");
 	}
 	
 	/**
