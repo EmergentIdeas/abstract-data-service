@@ -1,4 +1,4 @@
-# mongodb-data-service
+# abstract-data-service
 
 A fairly thin layer over a document storate mongodb collection(s), indexeddb stores, 
 objects as a json file. This servers as an abstract class for concrete implementations.
