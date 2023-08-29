@@ -4,7 +4,7 @@ var assert = require('chai').assert
 const tu = (one, two) => one * two
 const EventEmitter = require('events')
 
-const DataService = require('../abstract-data-service')
+const DataService = require('../abstract-data-service-node')
 
 function show(dat) {
 	console.log(JSON.stringify(dat, null, '\t'))
@@ -73,7 +73,7 @@ describe("basic data operations", async function () {
 	it("independent ids", function () {
 		let col = []
 		col.collectionName = 'default'
-		serv = new DataService({
+		let serv = new DataService({
 			collections: {
 				default: col
 			}

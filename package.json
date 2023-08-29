@@ -1,9 +1,10 @@
 {
   "name": "@dankolz/abstract-data-service",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": false,
   "description": "",
-  "main": "abstract-data-service.js",
+  "main": "abstract-data-service-node.js",
+  "browser": "abstract-data-service-browser.js",
   "scripts": {
     "test": "node node_modules/mocha/bin/mocha.js",
     "testdebug": "node --inspect-brk node_modules/mocha/bin/mocha.js"

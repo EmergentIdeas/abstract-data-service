@@ -1,6 +1,5 @@
 const filog = require('filter-log')
 const addCallbackToPromise = require('add-callback-to-promise')
-const crypto = require("crypto");
 
 
 class DataService {
@@ -28,11 +27,15 @@ class DataService {
 	}
 	
 	/**
+	 * EXTENDING CLASSES MUST IMPLEMENT THIS METHOD.
 	 * Generates storage system independent random ids
-	 * @returns a base64 string, 256 bits of randomness
+	 * @returns a string
 	 */
 	generateId() {
-		return crypto.randomBytes(32).toString("base64url");
+		throw new Error('generateId not implemented')
+		/*
+			check out abstract-data-service-node and abstract-data-service-browser for implementations
+		*/
 	}
 	
 	/**
