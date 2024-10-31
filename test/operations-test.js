@@ -5,6 +5,7 @@ const tu = (one, two) => one * two
 const EventEmitter = require('events')
 
 const DataService = require('../abstract-data-service-node')
+const sift = require('sift')
 
 function show(dat) {
 	console.log(JSON.stringify(dat, null, '\t'))
@@ -34,7 +35,8 @@ class DataServiceMock extends DataService {
 			if(!query || Object.keys(query).length == 0) {
 				return resolve([...collection])
 			}
-			let result = collection.filter(item => item._id == query._id || item.id == query.id)
+			// let result = collection.filter(item => item._id == query._id || item.id == query.id)
+			let result = collection.filter(sift(query))
 			resolve(result)
 		})
 	}
@@ -55,11 +57,12 @@ class DataServiceMock extends DataService {
 		return p
 	}
 	async _doInternalRemove(collection, query) {
+		let matcher = sift(query)
 		return new Promise((resolve, reject) => {
 			for(let i = 0; i < collection.length; i++) {
-				if(collection[i]._id == query._id || collection[i].id == query.id) {
+				if(matcher(collection[i])) {
 					collection.splice(i, 1)
-					break;
+					i--
 				}
 			}
 

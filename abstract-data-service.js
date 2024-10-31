@@ -92,13 +92,17 @@ class DataService {
 	 * @returns 
 	 */
 	createIdQuery(id) {
-		if(Array.isArray(id)) {
+		if (Array.isArray(id)) {
 			return id.map(this.createIdQuery)
 		}
-		if(typeof id === 'string') {
+		if (typeof id === 'string') {
 			return {
-				_id: id
-				, id: id
+				$or: [{
+					_id: id
+				}
+				, {
+					id: id
+				}]
 			}
 		}
 		return id
